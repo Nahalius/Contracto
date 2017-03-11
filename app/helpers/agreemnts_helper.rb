@@ -1,0 +1,2 @@
+module AgreemntsHelper
+end

@@ -1,0 +1,47 @@
+%section
+
+<div class="my-example">
+
+<ul id="myTab" class="nav nav-pills">
+<li class=""><a href="#dog" data-toggle="tab">Договор</a></li>
+<li class=""><a href="#pismo_a" data-toggle="tab">Писмо Ангажимент</a></li>
+<li class=""><a href="#p_pismo" data-toggle="tab">Представително Писмор</a></li>
+<li class=""><a href="#doklad" data-toggle="tab">Одиторски Доклад</a></li>
+
+</ul>
+
+
+<div id="myTabContent" class="tab-content">
+<div class="tab-pane fade" id="dog">
+%br
+%br
+  = render "agreemnts/documents/dogovor"
+<p  style="display: none">mytext1</p>
+</div>
+<div class="tab-pane fade" id="pismo_a">
+%br
+%br
+  = render "agreemnts/documents/pismo_a"
+<p  style="display: none">mytext2</p>
+</div>
+<div class="tab-pane fade" id="p_pismo">
+%br
+%br
+  = render "agreemnts/documents/p_pismo"
+<p  style="display: none">mytext2</p>
+</div>
+<div class="tab-pane fade" id="doklad">
+%br
+%br
+  = render "agreemnts/documents/doklad"
+<p  style="display: none">mytext2</p>
+</div>
+</div>
+
+%br
+%br
+
+
+= link_to 'Edit', edit_agreemnt_path(@agreemnt),class: 'btn btn-primary btn-xs'
+\|
+= link_to 'Договори', agreemnts_path,class: 'btn btn-primary btn-xs'

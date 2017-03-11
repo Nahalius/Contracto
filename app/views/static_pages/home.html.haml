@@ -1,0 +1,19 @@
+
+
+-provide(:title, 'Home')
+
+-if logged_in?
+
+  = link_to "КЛИЕНТИ", clients_path, class: "btn btn-lg btn-primary glyphicon glyphicon-user"
+  = link_to "ДОГОВОРИ", agreemnts_path, class: "btn btn-lg btn-primary glyphicon glyphicon-duplicate"
+  = link_to "ФАКТУРИ", invoices_path, class: "btn btn-lg btn-primary glyphicon glyphicon-paperclip"
+  = link_to "ПЛАЩАНИЯ", payments_path, class: "btn btn-lg btn-primary glyphicon glyphicon-piggy-bank"
+  = link_to "КОНТАКТИ", contacts_path, class: "btn btn-lg btn-primary glyphicon glyphicon-earphone"
+
+-else
+  <div class="center jumbotron">
+  <h1>Добре дошъл в КОНТРАКТО</h1>
+  <h2>Това е началната страница на приложението Контракто
+  </h2>
+  = link_to "Включи се!", login_path, class: "btn btn-lg btn-primary"
+  </div>

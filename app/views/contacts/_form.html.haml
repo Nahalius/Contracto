@@ -1,0 +1,26 @@
+= form_for @contact do |f|
+  - if @contact.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@contact.errors.count, "error")} prohibited this contact from being saved:"
+      %ul
+        - @contact.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.text_field :name
+    Име
+  .field
+    = select(:contact,:client, options_for_select(@clients), {:prompt => "--избери клиент--"})
+
+    Клиент
+  .field
+    = f.text_field :phone
+    Телефон
+  .field
+    = f.text_field :mail
+    Мейл
+  .field
+    = f.text_field :other
+    Други
+  .actions
+    = f.submit 'Запиши', class: 'btn btn-primary btn-xs'

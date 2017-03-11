@@ -1,0 +1,27 @@
+= form_for @client do |f|
+  - if @client.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@client.errors.count, "error")} prohibited this client from being saved:"
+      %ul
+        - @client.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.text_field :name
+    Наименование
+  .field
+    = f.text_field :eik
+    ЕИК
+
+  .field
+    = f.text_field :address
+    Адрес
+  .field
+    = f.text_field :manager
+    Управител
+  .field
+    = f.text_field :postcode
+    Пощенски код
+
+  .actions
+    = f.submit 'Запиши',class: 'btn btn-primary btn-xs'

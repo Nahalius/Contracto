@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Дата:
+  = @payment.date
+%p
+  %b Дотовор:
+  = @payment.agreemnt.name
+%p
+  %b Сума:
+  = @payment.amount
+%p
+  %b Текст:
+  = @payment.text
+
+= link_to 'Edit', edit_payment_path(@payment),class: 'btn btn-primary btn-xs'
+\|
+= link_to 'Назад', payments_path,class: 'btn btn-primary btn-xs'

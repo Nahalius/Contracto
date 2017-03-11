@@ -1,0 +1,31 @@
+%h1 Списък с Контакти
+
+%table{:class => "table table-striped table-hover ",:id => "contacts"}
+  %thead
+    %tr{:class => "success"}
+      %th Име
+      %th Клиент
+      %th Телефон
+      %th Мейл
+      %th Други
+      %th Клиент на
+      %th
+      %th
+      %th
+
+  %tbody
+    - @contacts.each do |contact|
+      %tr
+        %td= contact.name
+        %td= contact.client
+        %td= contact.phone
+        %td= mail_to contact.mail
+        %td= contact.other
+        %td= contact.company.name
+        %td= link_to 'Покажи', contact
+        %td= link_to 'Edit', edit_contact_path(contact)
+        %td= link_to 'Изтрий', contact, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'Нов Контакт', new_contact_path, class: 'btn btn-primary btn-xs'

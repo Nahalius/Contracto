@@ -1,0 +1,23 @@
+
+%p
+  %b Име:
+  = @contact.name
+%p
+  %b Клиент:
+  = @contact.client
+%p
+  %b Телефон:
+  = @contact.phone
+%p
+  %b Мейл:
+  = @contact.mail
+%p
+  %b Други:
+  = @contact.other
+%p
+  %b Клиент на:
+  = @contact.company.name
+
+= link_to 'Edit', edit_contact_path(@contact), class: 'btn btn-primary btn-xs'
+\|
+= link_to 'Назад', contacts_path, class: 'btn btn-primary btn-xs'

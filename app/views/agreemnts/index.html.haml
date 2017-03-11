@@ -1,0 +1,45 @@
+%h1 Списък с Договори
+
+%table{:class => "table table-striped table-hover ",:id => "agreemnts"}
+  %thead
+    %tr{:class => "success"}
+      %th Номер
+      %th Дата
+      %th Клиент
+      %th Сума Договор
+      %th Фактурирано
+      %th Платено
+      %th Ост.
+      %th Бюдж. часове
+      %th Отговорен Одитор
+      %th Стандарти
+      %th Статус
+      %th
+      %th
+      %th
+
+  %tbody
+    - @agreemnts.each do |agreemnt|
+      %tr
+        %td= agreemnt.name
+        %td= agreemnt.date
+        %td= agreemnt.client.name
+        %td= agreemnt.amount
+        %td= agreemnt.invoices.map(&:amount).inject(0, &:+)
+        %td= (agreemnt.payments.map(&:amount).inject(0, &:+)/1.2).round(2)
+        %td= agreemnt.amount - agreemnt.invoices.map(&:amount).inject(0, &:+)
+        %td= agreemnt.budget_hours
+        %td= agreemnt.manager
+        %td= agreemnt.agreemnt_type
+        %td
+          -if agreemnt.closed?
+            %span{:class => "glyphicon glyphicon-off text-danger"}Затворен
+          -else
+            %span{:class => "glyphicon glyphicon-play text-success"}Отворен
+        %td= link_to 'Документи', agreemnt,class: 'btn btn-primary btn-xs'
+        %td= link_to 'Edit', edit_agreemnt_path(agreemnt),class: 'btn btn-warning btn-xs'
+        %td= link_to 'Изтрий', agreemnt, :method => :delete, :data => { :confirm => 'ВНИМАНИЕ.Изтриването на този договор ще изтрие всички Фактури и Плащания свързани с него.' },class: 'btn btn-danger btn-xs'
+
+%br
+
+= link_to 'Нов Договор', new_agreemnt_path,class: 'btn btn-primary btn-xs'

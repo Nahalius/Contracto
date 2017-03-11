@@ -1,0 +1,47 @@
+= form_for @agreemnt do |f|
+  - if @agreemnt.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@agreemnt.errors.count, "error")} prohibited this agreemnt from being saved:"
+      %ul
+        - @agreemnt.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.text_field :name
+    Номер на Договора
+
+  <div class="field" >
+  = f.text_field :date, 'data-behaviour' => 'datepicker', placeholder: "Дата на Договора"
+  </div>
+
+  <script type="text/javascript">
+  $('[data-behaviour~=datepicker]').datepicker({
+  weekStart: 1,
+  autoclose: true,
+  format:'yyyy-mm-dd' ,
+  todayHighlight: true
+  });
+  </script>
+  .field
+    = f.collection_select(:client_id, @clients,:id,:name,{},{:multiple => false})
+
+    Клиент
+  .field
+    = f.text_field :amount
+    Възнаграждение без ДДС
+
+  .field
+    = f.text_field :budget_hours
+    Бюджетирани часове
+  .field
+    = f.collection_select(:manager, @users,:name,:name)
+    Отговорен Одитор
+  .field
+    = f.select(:agreemnt_type, options_for_select(["НСС","МСС","Други"]) )
+    Стандарти
+  .field
+    = f.check_box(:closed)
+    Затворен
+
+  .actions
+    = f.submit 'Запиши',class: 'btn btn-primary btn-xs'

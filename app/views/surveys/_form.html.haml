@@ -1,0 +1,17 @@
+
+= simple_form_for @survey do |m|
+  .field
+    = m.text_field :name
+    Име на Въпросника
+  .field
+    = m.text_field :section
+    Секция
+  .field
+    = m.text_area :text
+    Обяснителен текст
+  .field
+    =m.simple_fields_for :questions do |p|
+      = p.input :question
+
+    .actions
+    = m.submit 'Запиши',class: 'btn btn-warning btn-xs'

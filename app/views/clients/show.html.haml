@@ -1,0 +1,22 @@
+%p#notice= notice
+
+%h3="Досие на " +@client.name
+
+
+%p
+  %b Адрес:
+  = @client.address
+%p
+  %b Управител:
+  = @client.manager
+%p
+  %b ЕИК:
+  = @client.eik
+%p
+  %b П.К.:
+  = @client.postcode
+
+
+= link_to 'Edit', edit_client_path(@client),class: 'btn btn-primary btn-xs'
+
+= link_to 'Назад', clients_path,class: 'btn btn-primary btn-xs'

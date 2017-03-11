@@ -1,0 +1,31 @@
+%h1 Списък с Клиенти
+
+%table{:class => "table table-striped table-hover ",:id => "clients"}
+  %thead
+    %tr{:class => "success"}
+      %th Наименование
+      %th Адрес
+      %th Управител
+      %th ЕИК
+      %th Пощенски код
+      %th Клиент на
+      %th
+      %th
+
+
+  %tbody
+    - @clients.each do |client|
+      %tr
+        %td= client.name
+        %td= client.address
+        %td= client.manager
+        %td= client.eik
+        %td= client.postcode
+        %td= client.company.name
+        %td= link_to 'Досие', client,class: 'btn btn-warning btn-xs'
+        %td= link_to 'Редакция', edit_client_path(client),class: 'btn btn-warning btn-xs'
+
+%br
+
+= link_to 'Нов Клиент', new_client_path,class: 'btn btn-primary btn-xs'
+%br

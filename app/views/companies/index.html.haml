@@ -1,0 +1,26 @@
+%h1 Регистрирани Компании
+%br
+
+%table{:class => "table table-striped table-hover ",:id => "#"}
+  %thead
+    %tr
+      %th Име
+      %th ЕИК
+      %th Адрес
+      %th Управител
+      %th
+      %th
+      %th
+
+  %tbody
+    - @companies.each do |company|
+      %tr
+        %td= company.name
+        %td= company.eik
+        %td= company.address
+        %td= company.manager
+        %td= link_to 'Show', company
+
+%br
+
+= link_to 'Нова Компания ', new_company_path,class: 'btn btn-primary btn-xs'

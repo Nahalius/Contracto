@@ -1,0 +1,138 @@
+!!!
+%html
+  %head
+  %title RailsWickedPdf
+  <meta charset="UTF-8">
+  =wicked_pdf_stylesheet_link_tag    "application", :media => "all"
+  =wicked_pdf_javascript_include_tag "application"
+  =csrf_meta_tags
+%body
+
+%table{:class => "table ",:id => "#"}
+  %thead
+    %tr
+      %th Клиент:
+      %th= @invoice.agreemnt.client.name
+      %th Доставчик:
+      %th= @current_company.name
+
+  %tbody
+    %tr
+      %td Адрес:
+      %td= @invoice.agreemnt.client.name
+      %td Адрес:
+      %td= @current_company.address
+
+    %tr
+      %td ЕИК:
+      %td= @invoice.agreemnt.client.eik
+      %td ЕИК:
+      %td= @current_company.eik
+
+    %tr
+      %td  ДДС номер:
+      %td= 'BG'+@invoice.agreemnt.client.eik
+      %td  ДДС номер:
+      %td= 'BG'+@current_company.eik
+
+    %tr
+      %td  МОЛ:
+      %td= @invoice.agreemnt.client.manager
+      %td  МОЛ:
+      %td= @current_company.manager
+    %tr
+      %td
+        %h3{:class => "text-success"} ФАКТУРА
+      %td
+        %h3 ОРИГИНАЛ
+      %td  Съставител:
+      %td= @invoice.manager
+    %tr
+      %td{:class => "text-success"}
+        %b Номер на Фактурата:
+      %td= @invoice.number
+      %td
+      %td
+    %tr
+      %td{:class => "text-success"}
+        %b Дата:
+      %td= @invoice.date.strftime('%d-%m-%Y')
+      %td
+      %td
+
+%hr
+
+%table{:class => "table table-striped ",:id => "#"}
+  %thead
+    %tr
+      %th Наименование на стоките или услугите
+      %th Мярка
+      %th Количест-во
+      %th Единична цена
+      %th Стойност
+
+
+  %tbody
+    %tr
+      %td
+        %textarea{:rows=>"5", :cols=>"50"}='Услуги по договор '+@invoice.agreemnt.name
+      %td бр.
+      %td 1
+      %td= @invoice.amount
+      %td
+        %b= @invoice.amount
+    %tr
+      %td
+      %td
+      %td Всичко:
+      %td
+      %td
+        %b= @invoice.amount
+    %tr
+      %td
+      %td
+      %td Данъчна основа:
+      %td
+      %td
+        %b= @invoice.amount
+    %tr
+      %td
+      %td
+      %td Стойност на ДДС(x20%):
+      %td
+      %td
+        %b= @invoice.amount*0.2
+    %tr{:class => "success"}
+      %td
+      %td
+      %td Сума за плащане:
+      %td
+      %td
+        %b= @invoice.amount*1.2
+
+
+
+%p
+  %b Словом сума:
+  = @invoice.text
+%p Основание за неначисляване: <>
+
+%table{:class => "table table-striped ",:id => "#"}
+  %thead
+  %tbody
+    %tr
+      %td= 'Дата на данъчното събитие: '+@invoice.date.strftime('%d-%m-%Y').to_s
+      %td= 'Съставител: '+@invoice.manager
+    %tr
+      %td Подпис: .................
+      %td Начин на плащане: Банка
+
+
+
+%p Съгласно чл. 7, ал. 1 и чл. 8 от Закона за счетоводството, чл. 114 от ЗДДС и чл. 78 от ППЗДДС печатът не е задължителен реквизит на фактурата, а подписите са заменени с идентификационни шифри.
+
+%p В основание за превод моля впишете:
+%p
+  = '№ на договор: '+@invoice.agreemnt.name
+%p
+  = '№ на фактура: '+@invoice.number

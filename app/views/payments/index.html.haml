@@ -1,0 +1,27 @@
+%h1 Списък с плащания
+
+%table{:class => "table table-striped table-hover ",:id => "payments"}
+  %thead
+    %tr{:class => "success"}
+      %th Дата
+      %th Договор
+      %th Платена сума
+      %th Текст
+      %th
+      %th
+      %th
+
+  %tbody
+    - @payments.each do |payment|
+      %tr
+        %td= payment.date
+        %td= payment.agreemnt.name
+        %td= payment.amount
+        %td= payment.text
+        %td= link_to 'Покажи', payment
+        %td= link_to 'Edit', edit_payment_path(payment)
+        %td= link_to 'Изтрий', payment, :method => :delete, :data => { :confirm => 'Сигурен ли си че искаш да изтриеш това плащане?' }
+
+%br
+
+= link_to 'Ново плащане', new_payment_path,class: 'btn btn-primary btn-xs'
